@@ -4,6 +4,7 @@ import React from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 
 import TopBar from './TopBar'
+import HourSelector from './HourSelector'
 
 const styles = {
     root: {
@@ -18,7 +19,7 @@ class Root extends React.Component {
         return (
             <div className={c.root}>
                 <TopBar />
-                yo
+                <HourSelector />
             </div>
 
         )

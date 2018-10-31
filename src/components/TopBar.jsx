@@ -60,30 +60,28 @@ class TopBar extends React.Component {
         const { aboutOpen } = this.state
 
         return (
-            <div className={c.root}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton className={c.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer(true)}>
-                            <MenuIcon className={c.menu_icon} />
-                        </IconButton>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton className={c.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer(true)}>
+                        <MenuIcon className={c.menu_icon} />
+                    </IconButton>
 
-                        <SwipeableDrawer open={this.state.left} onClose={this.toggleDrawer(false)} onOpen={this.toggleDrawer(true)}>
-                            <div tabIndex={0} role="button" onClick={this.toggleDrawer(false)} onKeyDown={this.toggleDrawer(false)}>
-                                <List component="nav">
-                                    <ListItem button onClick={this.showAbout(true)}>
-                                        <ListItemIcon>
-                                            <HelpIcon />
-                                        </ListItemIcon>
-                                        <ListItemText primary="About" />
-                                    </ListItem>
-                                </List>
-                            </div>
-                        </SwipeableDrawer>
-                        <Typography variant="h6" color="inherit" className={c.headerText}>Awesome Slider</Typography>
-                        <AboutModal open={aboutOpen} onClose={this.showAbout(false)} />
-                    </Toolbar>
-                </AppBar>
-            </div>
+                    <SwipeableDrawer open={this.state.left} onClose={this.toggleDrawer(false)} onOpen={this.toggleDrawer(true)}>
+                        <div tabIndex={0} role="button" onClick={this.toggleDrawer(false)} onKeyDown={this.toggleDrawer(false)}>
+                            <List component="nav">
+                                <ListItem button onClick={this.showAbout(true)}>
+                                    <ListItemIcon>
+                                        <HelpIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="About" />
+                                </ListItem>
+                            </List>
+                        </div>
+                    </SwipeableDrawer>
+                    <Typography variant="h6" color="inherit" className={c.headerText}>Awesome Slider</Typography>
+                    <AboutModal open={aboutOpen} onClose={this.showAbout(false)} />
+                </Toolbar>
+            </AppBar>
         );
     }
 } export default withStyles(styles)(TopBar)

@@ -13,11 +13,14 @@ import store from 'store'
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: Amber[300]
+            main: Amber[300],
         },
         secondary: {
             main: Cyan[400],
         },
+    },
+    typography: {
+        useNextVariants: true,
     },
 })
 
