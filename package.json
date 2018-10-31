@@ -4,7 +4,7 @@
   "description": "Awesome slider component",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/hai5nguy/awesome-slider/issues"
   },
-  "homepage": "https://github.com/hai5nguy/awesome-slider#readme"
+  "homepage": "https://github.com/hai5nguy/awesome-slider#readme",
+  "dependencies": {
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.23.1",
+    "webpack-dev-server": "^3.1.10"
+  }
 }
