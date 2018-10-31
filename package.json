@@ -1,0 +1,19 @@
+{
+  "name": "awesome-selector",
+  "version": "1.0.0",
+  "description": "Awesome slider component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hai5nguy/awesome-slider.git"
+  },
+  "author": "Hai Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hai5nguy/awesome-slider/issues"
+  },
+  "homepage": "https://github.com/hai5nguy/awesome-slider#readme"
+}
