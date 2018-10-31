@@ -38,7 +38,7 @@ module.exports = (_, env) => {
             alias: {
                 actions: resolve(__dirname, 'src/actions'),
                 components: resolve(__dirname, 'src/components'),
-                store: resolve(__dirname, 'src/store'),
+                store: resolve(__dirname, 'src/store/store.js'),
                 src: resolve(__dirname, 'src'),
             },
             extensions: ['.js', '.jsx'],
