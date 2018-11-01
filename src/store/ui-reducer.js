@@ -3,6 +3,7 @@ const initialState = {
     sliderCenter: 0,
     slideWidth: 0,
     hourWidth: 0,
+    currentHour: 12,
 }
 
 export default (state = initialState, action) => {
@@ -23,18 +24,21 @@ export default (state = initialState, action) => {
             if (newPosition < sliderCenter - slideWidth + 10) {
                 newPosition = sliderCenter - slideWidth + 10
             }
-            return { ...state, sliderXPosition: newPosition }
+
+            const currentHour = Math.floor(((sliderCenter - sliderXPosition) / slideWidth) * 24)
+
+            return { ...state, sliderXPosition: newPosition, currentHour }
         }
         case 'UI_SET_SNAP_SLIDE_TO_HOUR': {
             const { sliderXPosition, sliderCenter, slideWidth, hourWidth } = state
             const hourToSnapTo = Math.floor(((sliderCenter - sliderXPosition) / slideWidth) * 24)
             const newPosition = sliderCenter - (hourToSnapTo * hourWidth + (hourWidth / 2)) - 2
-            return { ...state, sliderXPosition: newPosition }
+            return { ...state, sliderXPosition: newPosition, currentHour: hourToSnapTo, transitioning: true, oldXPosition: sliderXPosition }
         }
         case 'UI_SET_HOUR_SELECTOR_VALUE': {
-            const { sliderCenter, hourWidth } = state
+            const { sliderXPosition, sliderCenter, hourWidth } = state
             const newPosition = sliderCenter - (action.value * hourWidth + (hourWidth / 2)) - 2
-            return { ...state, sliderXPosition: newPosition }
+            return { ...state, sliderXPosition: newPosition, currentHour: action.value, transitioning: true, oldXPosition: sliderXPosition }
         }
         default:
             return state;

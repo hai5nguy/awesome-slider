@@ -5,9 +5,11 @@ import TextField from '@material-ui/core/TextField'
 
 import Slide from './Slide'
 
-import slideHourSlider from 'actions/slide-hour-slider'
+import setHourSelectorValue from 'actions/set-hour-selector-value'
 import setSliderCenter from 'actions/set-slider-center'
+import slideHourSlider from 'actions/slide-hour-slider'
 import snapSlideToHour from 'actions/snap-slide-to-hour'
+
 
 const styles = {
     root: {
@@ -37,6 +39,7 @@ class Slider extends React.Component {
         super()
         // this.slider = React.createRef()
         this.sliding = false
+        this.wasDragging = false
         this.startX = 0
         this.root = React.createRef()
     }
@@ -51,7 +54,8 @@ class Slider extends React.Component {
         // console.log('on drag')
         if (this.sliding) {
             // console.log('dragging', e.clientX)
-
+            console.log('wasdragging = true')
+            this.wasDragging = true
             // this.sliderRect = this.slider.current.getBoundingClientRect()
             // console.log('sliderRect', sliderRect)
 
@@ -65,12 +69,27 @@ class Slider extends React.Component {
         console.log('start sliding')
         this.sliding = true
         this.startX = e.clientX
+        // e.stopImmediatePropagation()
     }
 
-    stopSliding = () => {
+    stopSliding = (e) => {
         console.log('STOP sliding')
+        e.stopPropagation()
         this.sliding = false
+        // this.wasDragging = false
+
         snapSlideToHour()
+    }
+
+    hourClick = (hour) => {
+        console.log('hourClick wasDragging', this.wasDragging)
+        if (this.wasDragging) {
+            this.wasDragging = false
+            return
+        }
+
+        console.log('do click')
+        setHourSelectorValue(hour)
     }
 
     render() {
@@ -85,7 +104,7 @@ class Slider extends React.Component {
                 onMouseLeave={this.stopSliding}
                 ref={this.root}
             >
-                <Slide />
+                <Slide onHourClick={this.hourClick} />
                 <IndicatorIcon className={c.indicator_icon} />
             </div>
         )
