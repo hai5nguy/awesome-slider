@@ -12,8 +12,9 @@ const styles = {
         alignItems: 'center',
         border: '1px solid #e9e9ea',
         borderRadius: 4,
-        margin: 20,
+        margin: '20px auto',
         padding: 20,
+        maxWidth: 676,
     },
 }
 

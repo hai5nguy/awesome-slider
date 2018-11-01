@@ -53,23 +53,40 @@ class Slider extends React.Component {
     onDrag = (e) => {
         // console.log('on drag')
         if (this.sliding) {
+            let clientX
+            if (e.touches && e.touches.length === 1) {
+                clientX = e.touches[0].clientX
+                console.log('clientX', clientX)
+            } else {
+                clientX = e.clientX
+            }
+
             // console.log('dragging', e.clientX)
-            console.log('wasdragging = true')
+            // console.log('wasdragging = true')
             this.wasDragging = true
             // this.sliderRect = this.slider.current.getBoundingClientRect()
             // console.log('sliderRect', sliderRect)
 
-            const deltaX = e.clientX - this.startX
-            this.startX = e.clientX
+            console.log('this', this)
+            const deltaX = clientX - this.startX
+            this.startX = clientX
+            console.log('this.startX after', this.startX)
+
+            console.log('deltaX', deltaX)
             slideHourSlider(deltaX)
         }
     }
 
+
     startSliding = (e) => {
         console.log('start sliding')
         this.sliding = true
-        this.startX = e.clientX
-        // e.stopImmediatePropagation()
+
+        if (e.touches && e.touches.length === 1) {
+            this.startX = e.touches[0].clientX
+        } else {
+            this.startX = e.clientX
+        }
     }
 
     stopSliding = (e) => {
@@ -102,6 +119,10 @@ class Slider extends React.Component {
                 onMouseDown={this.startSliding}
                 onMouseUp={this.stopSliding}
                 onMouseLeave={this.stopSliding}
+                onTouchStart={this.startSliding}
+                onTouchEnd={this.stopSliding}
+                onTouchMove={this.onDrag}
+
                 ref={this.root}
             >
                 <Slide onHourClick={this.hourClick} />
