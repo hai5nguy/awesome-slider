@@ -56,30 +56,32 @@ class Slider extends React.Component {
             let clientX
             if (e.touches && e.touches.length === 1) {
                 clientX = e.touches[0].clientX
-                console.log('clientX', clientX)
+                // console.log('clientX', clientX)
             } else {
                 clientX = e.clientX
             }
 
             // console.log('dragging', e.clientX)
             // console.log('wasdragging = true')
-            this.wasDragging = true
             // this.sliderRect = this.slider.current.getBoundingClientRect()
             // console.log('sliderRect', sliderRect)
 
-            console.log('this', this)
+            // console.log('this', this)
             const deltaX = clientX - this.startX
             this.startX = clientX
-            console.log('this.startX after', this.startX)
+            // console.log('this.startX after', this.startX)
 
-            console.log('deltaX', deltaX)
+            // console.log('deltaX', deltaX)
+            if (Math.abs(deltaX) > 3) {
+                this.wasDragging = true
+            }
             slideHourSlider(deltaX)
         }
     }
 
 
     startSliding = (e) => {
-        console.log('start sliding')
+        // console.log('start sliding')
         this.sliding = true
 
         if (e.touches && e.touches.length === 1) {
@@ -90,7 +92,7 @@ class Slider extends React.Component {
     }
 
     stopSliding = (e) => {
-        console.log('STOP sliding')
+        // console.log('STOP sliding')
         e.stopPropagation()
         this.sliding = false
         // this.wasDragging = false
@@ -99,13 +101,11 @@ class Slider extends React.Component {
     }
 
     hourClick = (hour) => {
-        console.log('hourClick wasDragging', this.wasDragging)
+        // console.log('hourClick wasDragging', this.wasDragging)
         if (this.wasDragging) {
             this.wasDragging = false
             return
         }
-
-        console.log('do click')
         setHourSelectorValue(hour)
     }
 

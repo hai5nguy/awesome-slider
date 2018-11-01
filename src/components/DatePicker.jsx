@@ -2,6 +2,8 @@ import React from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import TextField from '@material-ui/core/TextField'
 
+import setUi from 'actions/set-ui'
+
 const styles = {
     textField: {
         width: 165,
@@ -21,6 +23,10 @@ const styles = {
 }
 
 class DatePicker extends React.Component {
+    change = (e) => {
+        setUi({ selectedDate: e.currentTarget.value })
+    }
+
     render() {
         const { classes: c } = this.props
 
@@ -32,6 +38,7 @@ class DatePicker extends React.Component {
                 label="Date"
                 type="date"
                 className={c.textField}
+                onChange={this.change}
                 InputLabelProps={{
                     shrink: true,
                 }}
