@@ -2,6 +2,8 @@ import React from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Typography } from '@material-ui/core';
 
+import setHourWidth from 'actions/set-hour-width'
+
 const styles = {
     root: {
         display: 'flex',
@@ -15,6 +17,9 @@ const styles = {
         width: '3.3rem',
         height: '100%',
         // border: '2px solid green',
+        '&:last-child > div': {
+            borderRight: '1px solid #999',
+        },
     },
     marking_box: {
         display: 'flex',
@@ -39,11 +44,18 @@ const styles = {
 }
 
 class HourBlock extends React.Component {
+    root = React.createRef()
+
+    componentDidMount() {
+        const rect = this.root.current.getBoundingClientRect()
+        setHourWidth(rect.width)
+    }
+
     render() {
         const { classes: c, hour } = this.props
 
         return (
-            <div className={c.root}>
+            <div className={c.root} ref={this.root}>
                 <Typography className={c.hour} variant="subtitle1" align="center">{hour}</Typography>
                 <div className={c.marking_box}>
                     <div className={c.line} />

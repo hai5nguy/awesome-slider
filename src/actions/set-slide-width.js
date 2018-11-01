@@ -1,5 +1,5 @@
 import { dispatch } from 'store'
 
-export default (width) => {
-    dispatch({ type: 'UI_SET_SLIDE_WIDTH', width })
+export default (slideWidth) => {
+    dispatch({ type: 'UI_SET', ui: { slideWidth } })
 }

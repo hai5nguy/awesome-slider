@@ -24,9 +24,10 @@ const styles = {
 }
 
 class Slide extends React.Component {
-    mouseDown = (e) => {
-        console.log('slide mousedown')
-        const rect = e.currentTarget.getBoundingClientRect()
+    root = React.createRef()
+
+    componentDidMount() {
+        const rect = this.root.current.getBoundingClientRect()
         setSlideWidth(rect.width)
     }
 
@@ -38,7 +39,7 @@ class Slide extends React.Component {
         const style = { left: sliderXPosition }
 
         return (
-            <div className={c.root} style={style} onMouseDown={this.mouseDown}>
+            <div className={c.root} style={style} onMouseDown={this.mouseDown} ref={this.root}>
                 { hours.map((h, i) => <HourBlock key={i} hour={i} />)}
             </div>
         )

@@ -1,8 +1,9 @@
 import React from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-// import TextField from '@material-ui/core/TextField'
 import DatePicker from './DatePicker';
 import Slider from './Slider';
+
+import setHourSelectorValue from 'actions/set-hour-selector-value'
 
 const styles = {
     root: {
@@ -17,6 +18,10 @@ const styles = {
 }
 
 class HourSelector extends React.Component {
+    componentDidMount() {
+        setHourSelectorValue(this.props.initialValue || 12)
+    }
+
     render() {
         const { classes: c } = this.props
 
