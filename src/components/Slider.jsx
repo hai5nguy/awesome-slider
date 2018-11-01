@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import Slide from './Slide'
 
 import slideHourSlider from 'actions/slide-hour-slider'
+import setSliderCenter from 'actions/set-slider-center'
 
 const styles = {
     root: {
@@ -56,6 +57,10 @@ class Slider extends React.Component {
         console.log('start sliding')
         this.sliding = true
         this.startX = e.clientX
+        const sliderRect = e.currentTarget.getBoundingClientRect()
+        // console.log('sliderRect', sliderRect)
+        const center = sliderRect.width / 2
+        setSliderCenter(center)
         // console.log('startX', this.startX)
     }
 

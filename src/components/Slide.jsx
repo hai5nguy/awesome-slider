@@ -6,6 +6,7 @@ import IndicatorIcon from '@material-ui/icons/Send'
 import TextField from '@material-ui/core/TextField'
 
 import HourBlock from './HourBlock'
+import setSlideWidth from 'actions/set-slide-width'
 
 const styles = {
     root: {
@@ -23,6 +24,12 @@ const styles = {
 }
 
 class Slide extends React.Component {
+    mouseDown = (e) => {
+        console.log('slide mousedown')
+        const rect = e.currentTarget.getBoundingClientRect()
+        setSlideWidth(rect.width)
+    }
+
     render() {
         const { classes: c, sliderXPosition } = this.props
 
@@ -31,7 +38,7 @@ class Slide extends React.Component {
         const style = { left: sliderXPosition }
 
         return (
-            <div className={c.root} style={style}>
+            <div className={c.root} style={style} onMouseDown={this.mouseDown}>
                 { hours.map((h, i) => <HourBlock key={i} hour={i} />)}
             </div>
         )
