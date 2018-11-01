@@ -11,38 +11,36 @@ import setUi from 'actions/set-ui'
 
 const styles = {
     root: {
-        // height: 60,
-        // width: '100%',
         background: '#aaa',
         position: 'absolute',
         top: 0,
         bottom: 0,
-        // alignItems: 'center',
         display: 'flex',
-        // flexDirection: 'column',
-
     },
 }
 
 class Slide extends React.Component {
     root = React.createRef()
 
-    componentDidMount() {
+    setSlideWidth = () => {
         const rect = this.root.current.getBoundingClientRect()
         setSlideWidth(rect.width)
     }
 
+    componentDidMount() {
+        this.setSlideWidth()
+        window.addEventListener('resize', this.setSlideWidth);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.setSlideWidth);
+    }
+
+
     componentDidUpdate() {
         const { transitioning, sliderXPosition } = this.props
         if (transitioning) {
-            // console.log('transitioning to ', sliderXPosition)
-            // console.log('root', this.root.current.style)
             this.root.current.style.left = `${sliderXPosition}px`
-
-            // if (this.timer) {
-            //     clearTimeout(this.timer)
-            // }
-            // this.timer = setTimeout(() => {
             setTimeout(() => {
                 setUi({ transitioning: false })
             }, 200)

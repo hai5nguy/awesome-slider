@@ -1,6 +1,6 @@
 {
     "name": "AwesomeSlider",
-    "short_name": "AwesomeSlider",
+    "short_name": "AS",
     "description": "AwesomeSlider App",
     "display": "standalone",
     "icons": [{
@@ -45,7 +45,7 @@
         }
     ],
     "orientation": "portrait",
-    "start_url": "index.html",
+    "start_url": "/",
     "theme_color": "#ffd54f",
     "background_color": "#fdfdfd"
 }

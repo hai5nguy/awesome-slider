@@ -8,7 +8,6 @@ import HourSelector from './HourSelector'
 
 const styles = {
     root: {
-
     },
     github: {
         textAlign: 'center',

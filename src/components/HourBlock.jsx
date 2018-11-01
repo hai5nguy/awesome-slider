@@ -10,13 +10,9 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        // position: 'relative',
-        // height: 60,
-        // width: '100%',
         background: '#ffefbc',
         width: '3.3rem',
         height: '100%',
-        // border: '2px solid green',
         '&:last-child > div': {
             borderRight: '1px solid #999',
         },

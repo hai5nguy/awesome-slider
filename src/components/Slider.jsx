@@ -37,42 +37,38 @@ const styles = {
 class Slider extends React.Component {
     constructor() {
         super()
-        // this.slider = React.createRef()
         this.sliding = false
         this.wasDragging = false
         this.startX = 0
         this.root = React.createRef()
     }
 
-    componentDidMount() {
+    setSliderCenter = () => {
         const sliderRect = this.root.current.getBoundingClientRect()
         const center = sliderRect.width / 2
         setSliderCenter(center)
     }
 
+    componentDidMount() {
+        this.setSliderCenter()
+        window.addEventListener('resize', this.setSliderCenter);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.setSliderCenter);
+    }
+
     onDrag = (e) => {
-        // console.log('on drag')
         if (this.sliding) {
             let clientX
             if (e.touches && e.touches.length === 1) {
                 clientX = e.touches[0].clientX
-                // console.log('clientX', clientX)
             } else {
                 clientX = e.clientX
             }
-
-            // console.log('dragging', e.clientX)
-            // console.log('wasdragging = true')
-            // this.sliderRect = this.slider.current.getBoundingClientRect()
-            // console.log('sliderRect', sliderRect)
-
-            // console.log('this', this)
             const deltaX = clientX - this.startX
             this.startX = clientX
-            // console.log('this.startX after', this.startX)
-
-            // console.log('deltaX', deltaX)
-            if (Math.abs(deltaX) > 3) {
+            if (Math.abs(deltaX) > 5) {
                 this.wasDragging = true
             }
             slideHourSlider(deltaX)
@@ -81,7 +77,6 @@ class Slider extends React.Component {
 
 
     startSliding = (e) => {
-        // console.log('start sliding')
         this.sliding = true
 
         if (e.touches && e.touches.length === 1) {
@@ -92,16 +87,11 @@ class Slider extends React.Component {
     }
 
     stopSliding = (e) => {
-        // console.log('STOP sliding')
-        e.stopPropagation()
         this.sliding = false
-        // this.wasDragging = false
-
         snapSlideToHour()
     }
 
     hourClick = (hour) => {
-        // console.log('hourClick wasDragging', this.wasDragging)
         if (this.wasDragging) {
             this.wasDragging = false
             return
