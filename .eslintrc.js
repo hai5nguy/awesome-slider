@@ -28,6 +28,8 @@ module.exports = {
         "semi": 0,
         "react/no-multi-comp": 0,
         "react/sort-comp": 0,
+        "jsx-a11y/interactive-supports-focus": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
     },
     "settings": {
         "import/resolver": {
